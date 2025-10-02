@@ -1,65 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".HabitsFragment">
+    android:padding="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="top"> <!-- 🔹 Align content to top -->
-
-        <!-- Title -->
-        <TextView
-            android:id="@+id/tv_habits_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="45dp"
-            android:paddingBottom="8dp"
-            android:text="Daily Habits"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <!-- Progress Bar -->
-        <ProgressBar
-            android:id="@+id/progress_habits"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:max="100"
-            android:progress="50"
-            android:progressTint="@android:color/holo_blue_light"
-            android:layout_marginBottom="12dp" />
-
-        <TextView
-            android:id="@+id/tv_habit_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Today's Progress: 50%"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Habit List -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_habits"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scrollbars="vertical" />
-
-    </LinearLayout>
-
-    <!-- Floating Add Button -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_habit"
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tv_habits_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Add Habit"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp" />
+        android:paddingTop="30dp"
+        android:paddingBottom="8dp"
+        android:text="Daily Habits"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <!-- RecyclerView to display habits -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerHabits"
+        android:layout_width="348dp"
+        android:layout_height="489dp"
+        app:layout_constraintBottom_toTopOf="@id/fabAddHabit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_habits_title" />
+
+    <!-- FloatingActionButton to add new habit -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddHabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="Add Habit"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

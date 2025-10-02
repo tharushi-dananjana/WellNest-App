@@ -1,59 +1,104 @@
 package com.example.wellnest
 
+import android.content.Context
 import android.os.Bundle
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+data class Habit(var name: String)
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HabitsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HabitsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: HabitAdapter
+    private lateinit var habits: MutableList<Habit>
+
+    private val prefsName = "wellness_prefs"
+    private val habitsKey = "habits"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_habits, container, false)
+        val view = inflater.inflate(R.layout.fragment_habits, container, false)
+
+        // Load habits
+        habits = loadHabits()
+
+        recyclerView = view.findViewById(R.id.recyclerHabits)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        adapter = HabitAdapter(habits,
+            onEdit = { habit -> editHabitDialog(habit) },
+            onDelete = { habit -> deleteHabit(habit) }
+        )
+        recyclerView.adapter = adapter
+
+        val fabAdd: FloatingActionButton = view.findViewById(R.id.fabAddHabit)
+        fabAdd.setOnClickListener { addHabitDialog() }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HabitsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HabitsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun addHabitDialog() {
+        val input = EditText(requireContext())
+        AlertDialog.Builder(requireContext())
+            .setTitle("Add New Habit")
+            .setView(input)
+            .setPositiveButton("Add") { _, _ ->
+                val habit = Habit(input.text.toString())
+                habits.add(habit)
+                saveHabits()
+                adapter.notifyDataSetChanged()
             }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun editHabitDialog(habit: Habit) {
+        val input = EditText(requireContext())
+        input.setText(habit.name)
+        AlertDialog.Builder(requireContext())
+            .setTitle("Edit Habit")
+            .setView(input)
+            .setPositiveButton("Save") { _, _ ->
+                habit.name = input.text.toString()
+                saveHabits()
+                adapter.notifyDataSetChanged()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun deleteHabit(habit: Habit) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Delete Habit")
+            .setMessage("Are you sure you want to delete this habit?")
+            .setPositiveButton("Yes") { _, _ ->
+                habits.remove(habit)
+                saveHabits()
+                adapter.notifyDataSetChanged()
+            }
+            .setNegativeButton("No", null)
+            .show()
+    }
+
+    private fun saveHabits() {
+        val prefs = requireContext().getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        val set = habits.map { it.name }.toSet()
+        prefs.edit().putStringSet(habitsKey, set).apply()
+    }
+
+    private fun loadHabits(): MutableList<Habit> {
+        val prefs = requireContext().getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+        val set = prefs.getStringSet(habitsKey, setOf()) ?: setOf()
+        return set.map { Habit(it) }.toMutableList()
     }
 }
