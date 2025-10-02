@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".SettingsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="40dp">
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/tv_settings_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:text="Settings"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Hydration Reminder -->
+            <TextView
+                android:id="@+id/tv_hydration_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hydration Reminder Interval (minutes)"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/et_hydration_interval"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+            android:hint="Enter interval in minutes"
+            android:inputType="number"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp" />
+
+            <Switch
+                android:id="@+id/switch_hydration"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+            android:text="Enable Hydration Reminders"
+            android:checked="true"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+            <!-- Dark Mode -->
+            <Switch
+                android:id="@+id/switch_dark_mode"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+            android:text="Enable Dark Mode"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+            <!-- Advanced Feature -->
+            <Switch
+                android:id="@+id/switch_widget"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+            android:text="Enable Home Screen Widget"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp" />
+
+            <!-- Save Settings Button -->
+            <Button
+                android:id="@+id/btn_save_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+            android:text="Save Settings"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

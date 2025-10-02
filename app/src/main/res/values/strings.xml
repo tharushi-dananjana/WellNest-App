@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">WellNest</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Welcome to WellNest</string>
+    <string name="onb1T1">Your personal companion for a healthier lifestyle.</string>
+    <string name="a">"Your personal companion for a "</string>
+    <string name="b">healthier lifestyle.</string>
+    <string name="ONB1">Build Healthy Habits</string>
+    <string name="c">Track your daily wellness activities</string>
+    <string name="signin">Sign In</string>
+    <string name="password">Forget Password</string>
+    <string name="d">Sign In</string>
+</resources>
