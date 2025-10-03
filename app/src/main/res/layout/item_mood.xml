@@ -4,42 +4,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="4dp"
+    android:padding="8dp"
     android:background="?attr/selectableItemBackground">
 
-    <!-- Habit Name -->
+    <!-- Mood Emoji -->
     <TextView
-        android:id="@+id/tvHabitName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Habit Name"
-        android:textSize="16sp"
+        android:id="@+id/tv_mood_emoji"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="😊"
+        android:textSize="24sp"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <!-- Mood Note -->
+    <TextView
+        android:id="@+id/tv_mood_note"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Mood note here"
+        android:textSize="16sp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        app:layout_constraintStart_toEndOf="@id/tv_mood_emoji"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnEditHabit"
-        android:paddingEnd="8dp"/>
+        app:layout_constraintEnd_toStartOf="@id/btnEdit"/>
 
     <!-- Edit Button -->
     <ImageButton
-        android:id="@+id/btnEditHabit"
+        android:id="@+id/btnEdit"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
         android:src="@android:drawable/ic_menu_edit"
-        android:contentDescription="Edit Habit"
+        android:contentDescription="Edit"
         android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@id/btnDeleteHabit"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toStartOf="@id/btnDelete"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <!-- Delete Button -->
     <ImageButton
-        android:id="@+id/btnDeleteHabit"
+        android:id="@+id/btnDelete"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@android:drawable/ic_menu_delete"
-        android:contentDescription="Delete Habit"
+        android:contentDescription="Delete"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

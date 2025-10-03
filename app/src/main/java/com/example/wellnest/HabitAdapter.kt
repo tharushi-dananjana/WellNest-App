@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -17,8 +18,9 @@ class HabitAdapter(
     // ViewHolder class
     class HabitViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tvHabitName)
-        val btnEdit: Button = itemView.findViewById(R.id.btnEditHabit)
-        val btnDelete: Button = itemView.findViewById(R.id.btnDeleteHabit)
+        val btnEdit: ImageButton = itemView.findViewById(R.id.btnEditHabit)
+        val btnDelete: ImageButton = itemView.findViewById(R.id.btnDeleteHabit)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {

@@ -18,10 +18,11 @@ class MainActivity : AppCompatActivity() {
         // BottomNavigationView
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener { menuItem ->
-            when(menuItem.itemId){
+            when (menuItem.itemId) {
                 R.id.navigation_home -> loadFragment(HomeFragment())
                 R.id.navigation_mood -> loadFragment(MoodFragment())
                 R.id.navigation_habit -> loadFragment(HabitsFragment())
+                R.id.nav_hydration -> loadFragment(HydrationFragment())
                 R.id.navigation_settings -> loadFragment(SettingsFragment())
             }
             true

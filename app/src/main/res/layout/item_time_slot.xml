@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical">
+
+    <!-- Time Text -->
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="08:00"
+        android:textSize="18sp"/>
+
+    <!-- Water Taken Checkbox -->
+    <CheckBox
+        android:id="@+id/cbTaken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Taken"
+        android:layout_marginEnd="8dp"/>
+
+    <!-- Edit Button wrapped for proper touch target -->
+    <FrameLayout
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless">
+
+        <ImageButton
+            android:id="@+id/btnEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_edit"
+            android:contentDescription="Edit"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"/>
+    </FrameLayout>
+
+    <!-- Delete Button wrapped for proper touch target -->
+    <FrameLayout
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless">
+
+        <ImageButton
+            android:id="@+id/btnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_delete"
+            android:contentDescription="Delete"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"/>
+    </FrameLayout>
+</LinearLayout>

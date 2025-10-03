@@ -17,6 +17,11 @@
         android:title="Habit" />
 
     <item
+        android:id="@+id/nav_hydration"
+        android:title="Hydration"
+        android:icon="@drawable/water" />
+
+    <item
         android:id="@+id/navigation_settings"
         android:icon="@drawable/ic_setting"
         android:title="Settings" />

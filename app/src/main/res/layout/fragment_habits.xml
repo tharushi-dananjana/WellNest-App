@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp">
+    android:background="#A1E9BC"
+    android:padding="8dp">
 
     <!-- Title -->
     <TextView
         android:id="@+id/tv_habits_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="60dp"
+        android:paddingBottom="8dp"
         android:text="Daily Habits"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:paddingTop="40dp"
-        android:paddingBottom="8dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- RecyclerView to display habits -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerHabits"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_habits_title"
-        app:layout_constraintBottom_toTopOf="@id/fabAddHabit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:clipToPadding="false"
         android:paddingTop="0dp"
-        android:paddingBottom="4dp"/>
+        android:paddingBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@id/fabAddHabit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_habits_title" />
 
     <!-- FloatingActionButton to add new habit -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -42,5 +42,5 @@
         android:contentDescription="Add Habit"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

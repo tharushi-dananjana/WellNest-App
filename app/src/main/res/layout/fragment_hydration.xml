@@ -1,75 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".HydrationFragment">
+    android:background="#A1E9BC"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- Enable / disable reminders -->
-    <Switch
-        android:id="@+id/switchReminders"
+    <!-- Title -->
+
+    <!-- Reminder Switch with proper touch target -->
+    <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="50dp"
-        android:text="Enable reminders"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingTop="40dp"
+        android:paddingRight="50dp"
+        android:text="          Hydration Tracker"
+        android:textSize="24sp" />
 
-    <!-- Interval label + input in one horizontal group -->
     <LinearLayout
-        android:id="@+id/intervalLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/switchReminders"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="20dp">
 
         <TextView
-            android:id="@+id/tvIntervalLabel"
+            android:id="@+id/tvReminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Interval (minutes)"
-            android:textSize="20sp" />
+            android:layout_marginRight="2dp"
+            android:text="    Enable Reminders"
+            android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/etInterval"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:hint="60"
-            android:inputType="number"
-            android:textSize="20sp" />
+        <!-- FrameLayout ensures min touch target -->
+        <FrameLayout
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless">
+
+            <Switch
+                android:id="@+id/switchReminder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
     </LinearLayout>
 
-    <!-- Button to log water intake -->
-    <Button
-        android:id="@+id/btnDrink"
-        android:layout_width="205dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="24dp"
-        android:text="I drank water"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/intervalLayout" />
+    <!-- Button to add new time slot -->
 
-    <!-- Today’s water count -->
-    <TextView
-        android:id="@+id/tvTodayCount"
+    <!-- RecyclerView for time slots -->
+    <Button
+        android:id="@+id/btnAddTimeSlot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Today: 0 cups"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnDrink" />
+        android:text="Add Time Slot"
+        android:textColorLink="#CAA0A0" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTimeSlots"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1" />
+
+    <!-- Daily water intake -->
+    <TextView
+        android:id="@+id/tvTotalWater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Today's Water Intake: 0.0 L"
+        android:textSize="18sp" />
+</LinearLayout>
